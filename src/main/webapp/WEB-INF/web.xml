@@ -19,6 +19,7 @@
 	<servlet-mapping>
 		<servlet-name>mvc-dispatcher</servlet-name>
 		<!-- 默认匹配所有的请求 -->
+<!-- 		表示哪些请求交给Spring Web MVC处理 -->
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
 </web-app>
