@@ -5,12 +5,19 @@
 <configuration>
 	<!-- 配置全局属性 -->
 	<settings>
+		<!-- 	Mybatis 配置文件 useGeneratedKeys 参数只针对 insert 语句生效，
+		默认为 false。当设置为 true 时，
+		表示如果插入的表以自增列为主键，
+		则允许 JDBC 支持自动生成主键，
+		并可将自动生成的主键返回。	 -->
 		<!-- 使用jdbc的getGeneratedKeys获取数据库自增主键值 -->
 		<setting name="useGeneratedKeys" value="true" />
 
 		<!-- 使用列别名替换列名 默认:true -->
+<!-- 使用列标签代替列名。不同的驱动在这方面会有不同的表现， 
+具体可参考相关驱动文档或通过测试这两种不同的模式来观察所用驱动的结果。-->
 		<setting name="useColumnLabel" value="true" />
-
+<!-- 从经典数据库列名 A_COLUMN 到经典 Java 属性名 aColumn 的类似映射 -->
 		<!-- 开启驼峰命名转换:Table{create_time} -> Entity{createTime} -->
 		<setting name="mapUnderscoreToCamelCase" value="true" />
 	</settings>
