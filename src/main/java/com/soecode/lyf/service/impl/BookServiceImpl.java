@@ -18,10 +18,11 @@ import com.soecode.lyf.exception.AppointException;
 import com.soecode.lyf.exception.NoNumberException;
 import com.soecode.lyf.exception.RepeatAppointException;
 import com.soecode.lyf.service.BookService;
-
+// 一个接口BookService   一个实现BookServiceImpl
 @Service
+//@Service用于标注业务层组件
 public class BookServiceImpl implements BookService {
-
+// https://blog.csdn.net/level_level/article/details/4248685   DML、DDL、DCL区别
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 
 	// 注入Service依赖
@@ -62,6 +63,11 @@ public class BookServiceImpl implements BookService {
 					throw new RepeatAppointException("repeat appoint");
 				} else {// 预约成功
 					Appointment appointment = appointmentDao.queryByKeyWithBook(bookId, studentId);
+// https://www.cnblogs.com/feng9exe/p/5611992.html		
+// 什么是领域模型(domain model)？贫血模型(anaemic domain model) 和充血模型(rich domain model)有什么区别
+// 从上图还可以看到，表现层与应用层之间是通过数据传输对象（DTO）进行交互的，数据传输对象是没有行为的POCO对象，
+// 	它的目的只是为了对领域对象进行数据封装，实现层与层之间的数据传递。为何不能直接将领域对象用于数据传递？
+// 因为领域对象更注重领域，而DTO更注重数据。不仅如此，由于“富领域模型”的特点，这样做会直接将领域对象的行为暴露给表现层
 					return new AppointExecution(bookId, AppointStateEnum.SUCCESS, appointment);
 				}
 			}
