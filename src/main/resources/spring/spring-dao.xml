@@ -6,12 +6,15 @@
 	http://www.springframework.org/schema/context
 	http://www.springframework.org/schema/context/spring-context.xsd">
 	<!-- 配置整合mybatis过程 -->
+<!--可以使用mybatis提供的mybatis-spring整合类包实现spring和mybatis的整合，从功能上来说，mybatis-spring完全符合spring的风格，
+   要在spring中配置mybatis，必须将mybatis-spring构件添加到pom.xml中，配置代码如下所示-->
 	<!-- 1.配置数据库相关参数properties的属性：${url} -->
 	<context:property-placeholder location="classpath:jdbc.properties" />
 
 	<!-- 2.数据库连接池 -->
 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
 		<!-- 配置连接池属性 -->
+<!--C3p0是一个开放源码的jdbc数据源实现项目 		 -->
 		<property name="driverClass" value="${jdbc.driver}" />
 		<property name="jdbcUrl" value="${jdbc.url}" />
 		<property name="user" value="${jdbc.username}" />
@@ -29,6 +32,8 @@
 	</bean>
 
 	<!-- 3.配置SqlSessionFactory对象 -->
+<!--mybatis-spring类包提供了一个sqlsessionfactorybean，以便通过spring风格创建mybatis的sqlsessionfactory
+,只需要注入数据源并指定mybatis的总装配置文件就行了 	 -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<!-- 注入数据库连接池 -->
 		<property name="dataSource" ref="dataSource" />
@@ -41,6 +46,7 @@
 	</bean>
 
 	<!-- 4.配置扫描Dao接口包，动态实现Dao接口，注入到spring容器中 -->
+	<!--通过，可以直接使用@autowired注入这些映射接口的bean 	 -->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
 		<!-- 注入sqlSessionFactory -->
 		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
