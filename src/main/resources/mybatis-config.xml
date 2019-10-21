@@ -19,7 +19,7 @@
 		<setting name="useColumnLabel" value="true" />
 <!-- 从经典数据库列名 A_COLUMN 到经典 Java 属性名 aColumn 的类似映射 -->
 		<!-- 开启驼峰命名转换:Table{create_time} -> Entity{createTime} -->
-<!-- 将下划线映射为驼峰  即create_time to createTime 		 -->
+<!-- 将下划线映射为驼峰  即create_time to createTime 由于数据库的命名规则决定的		 -->
 		<setting name="mapUnderscoreToCamelCase" value="true" />
 	</settings>
 </configuration>
