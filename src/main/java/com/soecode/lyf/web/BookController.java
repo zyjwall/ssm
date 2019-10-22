@@ -1,7 +1,9 @@
 package com.soecode.lyf.web;
 
 import java.util.List;
-
+// Logback-classic natively implements the SLF4J API 
+// so that you can readily switch back and forth between logback and other logging systems 
+// such as log4j or java.util.logging (JUL) introduced in JDK 1.4
 import org.apache.ibatis.annotations.Param;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
