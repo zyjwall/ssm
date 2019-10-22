@@ -1,13 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration debug="true">
+<!-- Configure the logback environment. You can do so in several more or less sophisticated ways. More on this later.
+In every class where you wish to perform logging, retrieve a Logger instance by invoking the org.slf4j.LoggerFactory class' getLogger() method, 
+passing the current class name or the class itself as a parameter.
+Use this logger instance by invoking its printing methods, 
+namely the debug(), info(), warn() and error() methods. This will produce logging output on the configured appenders.	 -->
+	
+<!--The ConsoleAppender, as the name indicates, appends on the console,
+or more precisely on System.out or System.err, the former being the default target. 
+ConsoleAppender formats events with the help of an encoder specified by the user-->
+	
 	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
 		<!-- encoders are by default assigned the type ch.qos.logback.classic.encoder.PatternLayoutEncoder -->
 		<encoder>
 			<pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
 		</encoder>
 	</appender>
-
+<!-- 也是<loger>元素，但是它是根loger。只有一个level属性，	 -->
+<!-- level:用来设置打印级别， -->
 	<root level="debug">
+<!-- 	<root>可以包含零个或多个<appender-ref>元素，标识这个appender将会添加到这个loger	 -->
 		<appender-ref ref="STDOUT" />
 	</root>
 </configuration>
